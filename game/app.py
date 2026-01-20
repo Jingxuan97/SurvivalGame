@@ -1,14 +1,18 @@
 import math
 import random
 
-import pygame
+from typing import Any
+
+import pygame as _pygame
+
+pygame: Any = _pygame
 
 from . import settings
 from .entities import ApexPredatorDot, BaseDot, PredatorDot, PreyDot
 
 
 def run():
-    pygame.init()
+    getattr(pygame, "init")()
     screen = pygame.display.set_mode(
         (settings.WINDOW_WIDTH, settings.WINDOW_HEIGHT)
     )
@@ -42,7 +46,7 @@ def run():
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == getattr(pygame, "QUIT"):
                 running = False
 
         now_ms = pygame.time.get_ticks()
@@ -191,4 +195,4 @@ def run():
         pygame.display.flip()
         clock.tick(settings.FPS)
 
-    pygame.quit()
+    getattr(pygame, "quit")()
